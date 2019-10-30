@@ -1,0 +1,23 @@
+---
+# defaults file for PostgreSQL instance
+
+- resource_group_name: rg_name
+
+  # PostgreSQL global variables
+  pgserver_name: "pg_name"
+  pgserver_sku_name: "GP_Gen5_2"
+  pgserver_sku_tier: GeneralPurpose
+  pgserver_capacity: 2
+  pgserver_storage_mb: 5120
+  pgserver_enforce_ssl: True
+  pgserver_version: 9.5
+
+  # pgserver_admin_user: "fibi@nfpi-{{ env }}-neu-pgserver"
+  pgserver_admin_user: "admin_user_name" #no special characters or variables in the name
+  pgserver_admin_password: "{{ lookup('password','/tmp/passwordfile chars=digits,ascii_letters,hexdigits') }}"
+  pgserver_state: present
+  pgdatabase_name: ['name','name','name'] #possibility to create several databases
+  pgdatabase_restore: no
+  pgdatabase_state: present
+  create_mode: default
+  restored_db: restored

@@ -1,0 +1,8 @@
+---
+
+- name: Create PostgreSQL instance
+  azure_rm_postgresqldatabase:
+    resource_group: "{{ resource_group_name }}"
+    server_name: "{{ pgserver_name }}"
+    name: "{{ item }}"
+  with_items: "{{ pgdatabase_name }}"

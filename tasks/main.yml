@@ -1,0 +1,26 @@
+---
+
+# Currently not working with Ansible 2.7 version
+#- name: Include PostgreSQL server
+#  include_tasks: "postgresql_server.yml"
+#  tags:
+#    - pg_server
+
+#- name: Include PostgreSQL instance
+#  include_tasks: "postgresql_server.yml"
+#  include_tasks: "postgresql_instance.yml"
+#  tags:
+#    - pg_instance
+
+- name: Include PostgreSQL instance
+  import_tasks: "postgresql_server.yml"
+  import_tasks: "postgresql_instance.yml"
+  tags:
+    - pg_instance
+
+- name: Generate configuration files
+  template:
+    src: pginstance.j2
+    dest: ./{{ pgserver_name }}.txt
+    force: yes
+  become: true

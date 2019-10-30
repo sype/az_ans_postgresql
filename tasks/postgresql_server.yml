@@ -1,0 +1,16 @@
+---
+
+- name: Create PostgreSQL Server
+  azure_rm_postgresqlserver:
+    resource_group: "{{ resource_group }}"
+    name: "{{ pgserver_name }}"
+    sku:
+      name: "{{ pgserver_sku_name }}"
+      tier: "{{ pgserver_sku_tier }}"
+      capacity: "{{ pgserver_capacity }}"
+    location: "{{ location }}"
+    storage_mb: "{{ pgserver_storage_mb }}"
+    enforce_ssl: "{{ pgserver_enforce_ssl }}"
+    version: "{{ pgserver_version }}"
+    admin_username: "{{ pgserver_admin_user }}"
+    admin_password: "{{ pgserver_admin_password }}"
